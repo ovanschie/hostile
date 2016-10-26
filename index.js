@@ -38,7 +38,8 @@ exports.HOSTS = WINDOWS
       .on('error', cb)
 
     function online (line) {
-      var matches = /^\s*?([^#]+?)\s+([^#]+?)$/.exec(line)
+      var lineSansComments = line.replace(/#.*/, '')
+      var matches = /^\s*?(.+?)\s+(.+?)$/.exec(lineSansComments)
       if (matches && matches.length === 3) {
         // Found a hosts entry
         var ip = matches[1]
